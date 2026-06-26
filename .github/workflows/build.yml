@@ -18,12 +18,15 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '24.x'
         
     - name: Build Frontend and Backend
       run: |
-        npm install --prefix frontend
-        npm run build --prefix frontend
+        npm install -g pnpm
+        cd frontend
+        pnpm install
+        pnpm run build
+        cd ..
         GOOS=linux GOARCH=mipsle go build -a -tags netgo -ldflags "-w -s" -o filebrowser-mipsle .
         
     - name: Upload Artifact
