@@ -27,7 +27,7 @@ jobs:
         pnpm install
         pnpm run build
         cd ..
-        GOOS=linux GOARCH=mipsle go build -a -tags netgo -ldflags "-w -s" -o filebrowser-mipsle .
+        GOOS=linux GOARCH=mipsle GOMIPS=softfloat go build -a -tags netgo -ldflags "-w -s" -o filebrowser-mipsle .
         
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
